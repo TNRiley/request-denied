@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>:root{color-scheme:light dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<!-- wrapped-for-pages -->
+<title>Request Denied</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,600&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --paper:#EDEAE4; --surface:#F7F5F0; --raise:#FFFFFF; --sunk:#E3DFD6;
+    --ink:#17171A; --muted:#65646C; --faint:#918F99; --line:#D6D2CA; --line-2:#C2BDB2;
+    --accent:#27518F; --accent-soft:#DCE4F1; --stamp:#A33326; --stamp-soft:#F2DCD8;
+    /* categorical, fixed order - validated light (surface #F7F5F0) */
+    --s1:#27518F; --s2:#B7791F; --s3:#A33326;
+    --plate:#FBFAF6; --plate-ink:#1E2A55; --plate-rim:#9FA3AE;
+    --shadow:0 1px 2px rgba(23,23,26,.05),0 14px 40px rgba(23,23,26,.09);
+    --r:16px; --r-sm:10px;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#101114; --surface:#191A1E; --raise:#212228; --sunk:#0B0C0E;
+    --ink:#E9E8E4; --muted:#9A98A2; --faint:#6B6976; --line:#272931; --line-2:#383A44;
+    --accent:#87ABDF; --accent-soft:#1A2234; --stamp:#E0796A; --stamp-soft:#2E1B18;
+    /* categorical, fixed order - validated dark (surface #191A1E) */
+    --s1:#4C8DF6; --s2:#B38224; --s3:#E0587A;
+    --plate:#D9D6CE; --plate-ink:#1E2A55; --plate-rim:#5F6270;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 16px 46px rgba(0,0,0,.45);
+  }}
+  :root[data-theme="dark"]{
+    --paper:#101114; --surface:#191A1E; --raise:#212228; --sunk:#0B0C0E;
+    --ink:#E9E8E4; --muted:#9A98A2; --faint:#6B6976; --line:#272931; --line-2:#383A44;
+    --accent:#87ABDF; --accent-soft:#1A2234; --stamp:#E0796A; --stamp-soft:#2E1B18;
+    --s1:#4C8DF6; --s2:#B38224; --s3:#E0587A;
+    --plate:#D9D6CE; --plate-ink:#1E2A55; --plate-rim:#5F6270;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 16px 46px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  body{background:var(--paper);color:var(--ink);font-family:"Archivo",system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:920px;margin:0 auto;padding:26px 22px 80px;position:relative}
+  .mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+
+  .masthead{border-bottom:2.5px solid var(--ink);padding-bottom:16px;margin-bottom:6px}
+  .eyebrow{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-right:46px;
+    font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  .eyebrow .accent{color:var(--accent);font-weight:600}
+  h1.title{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(44px,10vw,88px);line-height:.92;letter-spacing:-.025em;
+    margin:14px 0 10px;text-wrap:balance}
+  h1.title em{font-style:italic;color:var(--stamp)}
+  .dek{font-family:"Fraunces",serif;font-size:clamp(16px,2.4vw,20px);font-weight:400;color:var(--muted);max-width:64ch;line-height:1.45}
+  .dek b{color:var(--ink);font-weight:600}
+  .themebtn{position:absolute;top:26px;right:22px;background:var(--surface);border:1px solid var(--line);color:var(--muted);
+    width:38px;height:38px;border-radius:10px;cursor:pointer;font-size:15px}
+  .themebtn:hover{color:var(--ink);border-color:var(--line-2)}
+  .cw{font-size:12.5px;color:var(--faint);margin:10px 0 0}
+
+  .stripe{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);
+    border-radius:var(--r-sm);overflow:hidden;margin:22px 0 4px}
+  .stripe > div{background:var(--surface);padding:12px 14px}
+  .stripe .v{font-family:"IBM Plex Mono",monospace;font-size:19px;font-weight:600;letter-spacing:-.02em}
+  .stripe .k{font-size:11px;color:var(--faint);line-height:1.35;margin-top:3px}
+  @media(max-width:680px){.stripe{grid-template-columns:repeat(2,1fr)}}
+
+  section{margin:50px 0 0}
+  h2{font-family:"Fraunces",serif;font-size:clamp(24px,4vw,33px);font-weight:600;letter-spacing:-.02em;margin:0 0 6px;line-height:1.1}
+  h2 .num{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--accent);letter-spacing:.14em;
+    display:block;font-weight:600;margin-bottom:8px}
+  h3{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 10px;font-weight:600}
+  .lede{color:var(--muted);max-width:66ch;margin:0 0 18px;font-size:15.5px}
+  .lede b{color:var(--ink);font-weight:600}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;box-shadow:var(--shadow)}
+  .legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--muted);margin:10px 2px 2px}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .sw{width:11px;height:11px;border-radius:50%;flex:none;display:inline-block}
+  .sw.ring{background:transparent!important;border:2px solid}
+  .readout{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--muted);min-height:18px;margin:8px 2px 0}
+  .note{border-left:3px solid var(--accent);background:var(--accent-soft);padding:12px 14px;border-radius:0 var(--r-sm) var(--r-sm) 0;
+    font-size:14px;color:var(--ink);margin:16px 0;line-height:1.55}
+  .note.warn{background:transparent;border:1px solid var(--line);border-left:3px solid var(--stamp)}
+  .grid2{display:grid;grid-template-columns:1.25fr 1fr;gap:14px}
+  @media(max-width:760px){.grid2{grid-template-columns:1fr}}
+
+  .ctrls{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 14px}
+  button.pill{background:var(--surface);border:1px solid var(--line);color:var(--muted);border-radius:999px;
+    padding:6px 13px;font:inherit;font-size:13px;cursor:pointer}
+  button.pill[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+  button.pill:hover{border-color:var(--line-2)}
+
+  /* ---- the plates ---- */
+  .deck{display:grid;grid-template-columns:repeat(auto-fill,minmax(262px,1fr));gap:12px}
+  .slip{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:flex;flex-direction:column;gap:10px;position:relative}
+  .plate{align-self:flex-start;background:var(--plate);color:var(--plate-ink);border:2px solid var(--plate-rim);border-radius:9px;
+    padding:4px 14px 5px;font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:22px;letter-spacing:.14em;
+    box-shadow:inset 0 0 0 3px var(--plate),inset 0 0 0 4px var(--plate-rim);white-space:pre;position:relative}
+  .plate small{display:block;font-size:7.5px;letter-spacing:.3em;text-align:center;font-weight:500;margin-bottom:-2px;opacity:.75}
+  .said{font-size:13.5px;line-height:1.45}
+  .said .who{display:block;font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-bottom:1px}
+  .said.rev{color:var(--stamp)}
+  .said.rev .who{color:var(--stamp);opacity:.8}
+  .stamp{position:absolute;top:14px;right:14px;font-family:"IBM Plex Mono",monospace;font-size:10px;font-weight:600;letter-spacing:.14em;
+    color:var(--stamp);border:1.5px solid var(--stamp);border-radius:4px;padding:1px 5px;transform:rotate(-6deg);opacity:.85}
+  .nybadge{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--accent);margin-top:auto}
+
+  /* ---- charts ---- */
+  svg.chart{display:block;width:100%;height:auto;overflow:visible}
+  svg.chart text{font-family:"IBM Plex Mono",monospace;font-size:11px;fill:var(--muted)}
+  svg.chart text.ink{fill:var(--ink)}
+  svg.chart .grid{stroke:var(--line);stroke-width:1}
+  svg.chart .axis{stroke:var(--line-2);stroke-width:1}
+  svg.chart [data-tip]{cursor:default}
+  svg.chart .hit{fill:transparent}
+  #tip{position:fixed;z-index:9;pointer-events:none;background:var(--raise);color:var(--ink);border:1px solid var(--line-2);
+    border-radius:8px;padding:7px 10px;font-size:12.5px;line-height:1.4;box-shadow:var(--shadow);max-width:280px}
+  #tip b{font-family:"IBM Plex Mono",monospace}
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{font-family:"IBM Plex Mono",monospace;font-size:12px;border:1px solid var(--line-2);border-radius:6px;padding:2px 7px;background:var(--raise)}
+  .chip i{font-style:normal;color:var(--faint);margin-left:5px}
+
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th,td{text-align:right;padding:5px 7px;border-bottom:1px solid var(--line)}
+  th:first-child,td:first-child{text-align:left}
+  th{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);font-weight:600}
+  td{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+  .scroll{overflow-x:auto}
+  details.tbl{margin-top:10px}
+  details.tbl summary{cursor:pointer;font-size:12.5px;color:var(--accent)}
+
+  details.methods{margin-top:44px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);padding:0 16px}
+  details.methods summary{cursor:pointer;padding:14px 0;font-weight:600;font-size:14px;list-style:none;display:flex;justify-content:space-between}
+  details.methods summary::-webkit-details-marker{display:none}
+  details.methods summary::after{content:"+";color:var(--accent);font-family:"IBM Plex Mono",monospace}
+  details.methods[open] summary::after{content:"\2212"}
+  details.methods > div{padding:0 0 16px;font-size:14px;color:var(--muted);line-height:1.62}
+  details.methods h4{color:var(--ink);font-size:12px;margin:18px 0 5px;text-transform:uppercase;letter-spacing:.08em}
+  details.methods code{font-family:"IBM Plex Mono",monospace;font-size:12.5px;background:var(--sunk);padding:1px 5px;border-radius:4px}
+  footer{margin-top:46px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint);line-height:1.7}
+  a{color:var(--accent)}
+</style>
+</head>
+<body>
+<!-- catalog-link -->
+<style>
+.qp-crumb{display:flex;align-items:center;gap:8px;padding:9px 18px;
+  border-bottom:1px solid rgba(128,128,128,.26);background:rgba(128,128,128,.06);
+  font:500 12px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.06em}
+.qp-crumb a{color:inherit;text-decoration:none;opacity:.68;display:inline-flex;gap:7px;align-items:center}
+.qp-crumb a:hover,.qp-crumb a:focus-visible{opacity:1;text-decoration:underline;text-underline-offset:3px}
+.qp-crumb .qp-sep{opacity:.34}
+.qp-crumb .qp-here{opacity:.44;text-transform:uppercase}
+@media(max-width:600px){.qp-crumb{padding:8px 14px;font-size:11px}}
+@media print{.qp-crumb{display:none}}
+</style>
+<nav class="qp-crumb" aria-label="Breadcrumb">
+  <a href="https://tnriley.github.io/quick-projects/">&larr;&nbsp;Quick Projects</a>
+  <span class="qp-sep">/</span>
+  <span class="qp-here">Request Denied</span>
+</nav>
+<!-- /catalog-link -->
+<div class="wrap">
+  <button class="themebtn" id="theme" title="Switch theme" aria-label="Switch theme">&#9680;</button>
+
+  <header class="masthead">
+    <div class="eyebrow">
+      <span>Quick Projects</span>
+      <span class="accent">State DMVs &middot; 2010&ndash;2025</span>
+    </div>
+    <h1 class="title">Request <em>Denied</em></h1>
+    <p class="dek" id="dek"></p>
+    <p class="cw">These are the words states refuse to put on cars, so some of them are crude. Slurs are left out of every example on this page.</p>
+  </header>
+
+  <div class="stripe" id="stripe"></div>
+
+  <section>
+    <h2><span class="num">01 &middot; TWO READERS</span>What you meant, and what they read</h2>
+    <p class="lede" id="lede1"></p>
+    <div class="ctrls" id="deckctrls"></div>
+    <div class="deck" id="deck"></div>
+  </section>
+
+  <section>
+    <h2><span class="num">02 &middot; CODE NUMBERS</span>A birthday ending in 13</h2>
+    <p class="lede" id="lede2"></p>
+    <div class="grid2">
+      <div class="card">
+        <h3>California approval rate of flagged plates, by last two digits</h3>
+        <div id="suffix"></div>
+        <div class="legend" id="suffix-legend"></div>
+      </div>
+      <div class="card">
+        <h3>Words in reviewers&rsquo; denial comments, 2015&ndash;16</h3>
+        <div id="vocab"></div>
+        <p class="readout" id="vocab-read"></p>
+      </div>
+    </div>
+    <details class="tbl"><summary>Table view</summary><div class="scroll" id="suffix-table"></div></details>
+  </section>
+
+  <section>
+    <h2><span class="num">03 &middot; BORROWED LISTS</span>Taboo by photocopy</h2>
+    <p class="lede" id="lede3"></p>
+    <div class="card">
+      <h3>Share of each state&rsquo;s 2012 banned list (row) that also appears on another state&rsquo;s list (column)</h3>
+      <div class="scroll"><div id="heat" style="min-width:560px"></div></div>
+      <p class="readout" id="heat-read"></p>
+    </div>
+    <details class="tbl"><summary>Table view</summary><div class="scroll" id="heat-table"></div></details>
+    <div class="grid2" style="margin-top:14px">
+      <div class="card"><h3>Utah&rsquo;s stated reasons, 2012</h3><div id="utah"></div></div>
+      <div class="card"><h3>Banned on all twelve lists, or nearly</h3><div class="chips" id="shared"></div>
+        <p class="readout" id="maine"></p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">04 &middot; THE CALENDAR</span>Texas rejects the news</h2>
+    <p class="lede" id="lede4"></p>
+    <div class="card">
+      <h3>Declined personalized plates by request date, Texas 2025</h3>
+      <div id="months"></div>
+      <div id="tagline"></div>
+      <div class="legend" id="tag-legend"></div>
+    </div>
+    <div class="note" id="note-tx"></div>
+  </section>
+
+  <details class="methods">
+    <summary>Methods, and where not to push this</summary>
+    <div id="methods"></div>
+  </details>
+
+  <footer id="foot"></footer>
+</div>
+<div id="tip" hidden></div>
+
+<script>
+const D = {"counts":{"ca15":23430,"ca15_denied":18757,"ca13":3999,"ca13_denied":3325,"ny_issued":131989,"ny_rejected":1646,"states2012":16,"pairs2012":102598,"tx":1951},"examples":[{"plate":"13LUV94","years":"2015–16","meaning":"I AM A UNION MEMBER WITH LOCAL 13 AND MY HUSBAND IS A UNION MEMBER WITH LOCAL 94","reviewer":"13=GANG NUMBER","ny":0},{"plate":"BLUE 14","years":"2015–16","meaning":"I AM A VOLUNTEER UMPIRE FOR YOUTH BASEBALL, 'BLUE' IS A NICKNAME FOR UMPIRE. 14 IS MY UMPIRE NUMBER","reviewer":"14 = GANG NUMBER","ny":0},{"plate":"13 BE8ST","years":"2015–16","meaning":"FOR THE 1.3 LITER ROTARY ENGINE IN THE CAR","reviewer":"13 GANG REFERENCE","ny":0},{"plate":"18DUKE6","years":"2015–16","meaning":"IT IS THE NAME OF THE HELICOPTER I FLY","reviewer":"18, GANG REFERENCE","ny":0},{"plate":"MWY88","years":"2015–16","meaning":"MY NAME AND 88 IN CHINESE MEAN BEING RICH","reviewer":"88=HATE SYMBOL, NO 1988 CAR ON ANI","ny":0},{"plate":"CO2 KILR","years":"2015–16","meaning":"REDUCING CO2 AND HENCE IMPACT TO THE ENVIRONMENT BY DRIVING AN ELECTRIC CAR","reviewer":"KILLER","ny":0},{"plate":"H8WINTR","years":"2015–16","meaning":"I DISLIKE WINTER. THE CAR IS A CONVERTIBLE","reviewer":"HATE, HOSTILE","ny":0},{"plate":"8MYBAIT","years":"2015–16","meaning":"I AM A FISHERMAN. IT MEANS \"THE FISH ATE MY BAIT\"","reviewer":"ATE MY BAIT","ny":0},{"plate":"MDL 3SOM","years":"2015–16","meaning":"WILL BE FOR MY TESLA MODEL THREE AND IS ALSO A GOLFING PUN","reviewer":"THREESOME SEXUAL REFERENCE","ny":0},{"plate":"1BATASS","years":"2015–16","meaning":"CITY IN IRAQ WHERE MY BROTHER SERVED","reviewer":"BATAS IS A CITY IN IRAQ (WITH ONE S) THIS LOOKS LIKE 'BAD ASS'","ny":0},{"plate":"TATA","years":"2015–16","meaning":"IT JUST MEANS DAD IN SERBIAN","reviewer":"BREAST","ny":0},{"plate":"LOVE SVD","years":"2015–16","meaning":"GODS LOVE SAVED MY SOUL","reviewer":"SVD IS A SNIPER RIFLE","ny":0},{"plate":"PEWPEWS","years":"2015–16","meaning":"STARWARS STORMTROOPER THEMED TOYOTA RAV4 SUV. THE SOUND STORMTROOPERS MAKE","reviewer":"PEW PEW GUN SOUND","ny":0},{"plate":"CLD SQD","years":"2015–16","meaning":"MY WIFE'S TV SHOW IS \"COLD SQUAD","reviewer":"COLD SQUAD IS A POLICE TV SHOW","ny":0},{"plate":"67NAM69","years":"2015–16","meaning":"MY MILITARY HISTORY","reviewer":"69, SEXUAL REFERENCE","ny":0},{"plate":"VOOPIN","years":"2015–16","meaning":"MY DAUGHTER PLAYS VOLLEYBALL, SO INSTEAD OF SAYING \"HOPPIN\" LIKE BASKETBALL PLAYERS DO, THEY SAY \"WOOPIN","reviewer":"GOOGLE IMAGES SHOW PEOPLE ON TOILETS","ny":0},{"plate":"POOPELL","years":"2015–16","meaning":"THIS IS A NICKNAME THAT MY LATE GRANDFATHER USED TO CALL ME. IT HAS GREAT PERSONAL MEANING TO ME","reviewer":"POOP","ny":0},{"plate":"1NUT","years":"2015–16","meaning":"I HAD TESTICULAR CANCER","reviewer":"NUT, SEXUAL REFERENCE","ny":1},{"plate":"IHA8PPL","years":"2015–16","meaning":"I HAVE ABOUT 8 PEOPLE. I AM THE MOTHER OF 8 CHILDREN","reviewer":"HATE","ny":1},{"plate":"GUNDOGS","years":"2015–16","meaning":"I TRAIN RETRIEVERS AS GUN DOGS","reviewer":"GUN","ny":1},{"plate":"TRIGGA","years":"2015–16","meaning":"MY NICK N AME OF TRIGONOMETRY","reviewer":"TRIGGER AS IN GUN","ny":1},{"plate":"PANDA13","years":"2015–16","meaning":"PANDA THE ANIMAL AND GRADUATION YEAR","reviewer":"13 = GANG NUMBER","ny":1},{"plate":"USMC626","years":"2015–16","meaning":"UNITED STATES MARINE CORPS AREA CODE","reviewer":"626, AREA CODE, GANG REFERENECE","ny":1},{"plate":"FTP","years":"2015–16","meaning":"STANDS FOR FREE THE PRESS","reviewer":"F*** THE POLICE","ny":1},{"plate":"HOPATRL","years":"2012–13","meaning":"(HOPE TRAIL) IS A LONG WEIGHT LOSS ROAD…I'VE BEEN OVER WEIGHT MY WHOLE LIFE & LOST 250 LBS","reviewer":"HO PATROL","ny":0},{"plate":"KLR3CYL","years":"2012–13","meaning":"KILLER 3 CYLINDER CAR. IT'S FUN, KILLER HAS 3 CYLINDERS AND GETS GREAT MILEAGE","reviewer":"KILLER","ny":0},{"plate":"4GOTR44","years":"2012–13","meaning":"FORGOT 44TH ANNIVERSARY","reviewer":"FORGOT OUR 44; THERE ARE .44 MAGNUM REVOLVERS","ny":0},{"plate":"AFTRSX","years":"2012–13","meaning":"AFTER RAISING SIX KIDS WE GOT A NICE CAR FOR MOM AND DAD","reviewer":"ALSO LOOKS LIKE 'AFTER SEX'","ny":0},{"plate":"XZMBKLR","years":"2012–13","meaning":"EX ZOMBIE KILLER. RETIRED ZOMBIE KILLER FROM MY NOVEL","reviewer":"ZOMBIE KILLER","ny":0},{"plate":"BNDLVN","years":"2012–13","meaning":"BLONDE LVN. MY HAIR COLOR & PROFESSION","reviewer":"B&D LOVIN (BONDAGE AND DISCIPLINE)","ny":0}],"suffixes":[{"s":"13","why":"Sureño gang number","ca13":{"flagged":148,"approved":17},"ca15":{"flagged":802,"approved":57},"ny":741},{"s":"14","why":"Norteño gang number / white-supremacist '14 words'","ca13":{"flagged":48,"approved":11},"ca15":{"flagged":476,"approved":77},"ny":429},{"s":"18","why":"read as a gang number","ca13":{"flagged":54,"approved":4},"ca15":{"flagged":289,"approved":15},"ny":382},{"s":"88","why":"neo-Nazi code for 'HH'","ca13":{"flagged":79,"approved":6},"ca15":{"flagged":738,"approved":39},"ny":760},{"s":"69","why":"sexual","ca13":{"flagged":26,"approved":3},"ca15":{"flagged":293,"approved":42},"ny":368}],"vocab":[{"k":"gang","n":2540},{"k":"sexual","n":1380},{"k":"drugs","n":793},{"k":"hate or hostile","n":1949},{"k":"area code","n":1059},{"k":"guns or weapons","n":531},{"k":"police","n":280},{"k":"Urban Dictionary","n":155}],"vocab_base":18757,"states":[{"s":"AR","n":9680},{"s":"AZ","n":26709},{"s":"DC","n":9185},{"s":"GA","n":9847},{"s":"IA","n":2657},{"s":"KS","n":1076},{"s":"ME","n":6146},{"s":"NJ","n":1091},{"s":"OK","n":1171},{"s":"UT","n":980},{"s":"VT","n":24093},{"s":"WI","n":8544}],"overlap":[[null,0.356,0.137,0.234,0.088,0.026,0.435,0.015,0.018,0.008,0.708,0.14],[0.129,null,0.134,0.128,0.035,0.017,0.15,0.007,0.013,0.008,0.468,0.076],[0.144,0.389,null,0.155,0.041,0.017,0.196,0.008,0.013,0.005,0.433,0.085],[0.23,0.348,0.144,null,0.073,0.024,0.27,0.011,0.017,0.006,0.372,0.128],[0.321,0.347,0.143,0.272,null,0.065,0.231,0.033,0.05,0.018,0.451,0.386],[0.234,0.416,0.147,0.222,0.16,null,0.203,0.051,0.079,0.037,0.385,0.272],[0.685,0.65,0.292,0.433,0.1,0.035,null,0.021,0.024,0.01,0.655,0.181],[0.132,0.169,0.069,0.099,0.081,0.05,0.121,null,0.022,0.009,0.188,0.113],[0.15,0.303,0.104,0.143,0.114,0.073,0.128,0.02,null,0.012,0.285,0.201],[0.074,0.221,0.049,0.061,0.05,0.041,0.063,0.01,0.014,null,0.178,0.089],[0.284,0.519,0.165,0.152,0.05,0.017,0.167,0.009,0.014,0.007,null,0.096],[0.158,0.236,0.092,0.148,0.12,0.034,0.13,0.014,0.028,0.01,0.271,null]],"maine_sources":[["AK",4193],["ME",969],["NY",842],["AR",131]],"most_shared":[["OLDFART",12],["AZKIKR",11],["PIMPIN",10],["NOSHT",10],["BADASS",10],["HORNY",10],["SUCKIT",10],["EATME",10],["SUX2BU",10],["PHUQ",9],["4Q",9]],"utah":[["SEX REFERENCE",350],["DRUG REFERENCE",233],["PROFANE",102],["PUBLIC WELFARE",89],["OBSCENE",51],["VULGAR",47],["DEROGATORY",38],["ETHNIC",30],["RACE REFERENCE",18],["SHOWS CONTEMPT",13]],"tx_months":[182,137,155,172,171,185,150,155,172,193,130,149],"tx_tagged":[{"tag":"FAFO","plate":"DNTFAFO","date":"2025-01-02"},{"tag":"FAFO","plate":"FAFO*AH","date":"2025-01-06"},{"tag":"FAFO","plate":"FAF026","date":"2025-01-08"},{"tag":"FAFO","plate":"YEA FAFO","date":"2025-01-23"},{"tag":"FAFO","plate":"FAFO 47","date":"2025-01-27"},{"tag":"FAFO","plate":"FAFO*819","date":"2025-01-27"},{"tag":"FAFO","plate":"FAFODJT","date":"2025-01-28"},{"tag":"FAFO","plate":"GX@FAFO","date":"2025-02-07"},{"tag":"FAFO","plate":"DJT FAFO","date":"2025-02-12"},{"tag":"FAFO","plate":"FAFO95","date":"2025-02-13"},{"tag":"FAFO","plate":"47FAF0","date":"2025-02-14"},{"tag":"FAFO","plate":"USA*FAFO","date":"2025-02-18"},{"tag":"FAFO","plate":"FAFO77","date":"2025-03-10"},{"tag":"FAFO","plate":"FAFO82","date":"2025-03-14"},{"tag":"FAFO","plate":"FAF0 ON3","date":"2025-03-24"},{"tag":"Musk","plate":"WTH*ELON","date":"2025-03-25"},{"tag":"FAFO","plate":"FAFO@16","date":"2025-03-26"},{"tag":"Musk","plate":"FUC&ELON","date":"2025-04-01"},{"tag":"FAFO","plate":"FAFO74","date":"2025-04-04"},{"tag":"Musk","plate":"FMUSK","date":"2025-04-07"},{"tag":"FAFO","plate":"FAFO25","date":"2025-04-10"},{"tag":"FAFO","plate":"76@FAFO","date":"2025-04-16"},{"tag":"Musk","plate":"FKKMUSK","date":"2025-04-21"},{"tag":"FAFO","plate":"FA FO123","date":"2025-04-21"},{"tag":"FAFO","plate":"FAFOMOM","date":"2025-04-24"},{"tag":"Musk","plate":"FU MUSK","date":"2025-05-02"},{"tag":"Musk","plate":"UGH*ELON","date":"2025-05-12"},{"tag":"FAFO","plate":"HHH FAFO","date":"2025-05-27"},{"tag":"FAFO","plate":"FAFO-007","date":"2025-05-29"},{"tag":"FAFO","plate":"FAFO Z06","date":"2025-06-02"},{"tag":"FAFO","plate":"FAFO GT","date":"2025-06-06"},{"tag":"Musk","plate":"ELONLFG","date":"2025-06-17"},{"tag":"FAFO","plate":"FAFO&HT","date":"2025-06-19"},{"tag":"FAFO","plate":"2*FAF0&A","date":"2025-07-14"},{"tag":"FAFO","plate":"81FAFO","date":"2025-07-15"},{"tag":"FAFO","plate":"392 FAFO","date":"2025-07-22"},{"tag":"FAFO","plate":"FAFO 247","date":"2025-07-22"},{"tag":"FAFO","plate":"FAFO65","date":"2025-07-22"},{"tag":"FAFO","plate":"UTFAFO","date":"2025-08-07"},{"tag":"FAFO","plate":"FAFO@96","date":"2025-09-02"},{"tag":"FAFO","plate":"FAF02ND","date":"2025-09-16"},{"tag":"FAFO","plate":"247 FAFO","date":"2025-09-19"},{"tag":"FAFO","plate":"YO FAFO","date":"2025-09-23"},{"tag":"ICE","plate":"&FKICE","date":"2025-10-13"},{"tag":"FAFO","plate":"03FAFO","date":"2025-10-27"},{"tag":"FAFO","plate":"CFAFOO","date":"2025-10-27"},{"tag":"ICE","plate":"ICEGANG","date":"2025-11-04"},{"tag":"ICE","plate":"ICE@DICK","date":"2025-11-10"},{"tag":"FAFO","plate":"FAFOOOO","date":"2025-11-21"},{"tag":"FAFO","plate":"FAF006","date":"2025-12-15"}]};
+"use strict";
+// Request Denied - every figure below is read from D (payload.json); prose that quotes a
+// number computes it here so the text cannot drift from the data.
+
+const $ = id => document.getElementById(id);
+const fmt = n => n.toLocaleString("en-US");
+const pct = (a, b, d = 0) => (b ? (100 * a / b).toFixed(d) : "0") + "%";
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+const C = D.counts;
+const STATE_NAMES = {AR: "Arkansas", AZ: "Arizona", DC: "D.C.", GA: "Georgia", IA: "Iowa", KS: "Kansas", ME: "Maine",
+  NJ: "New Jersey", OK: "Oklahoma", UT: "Utah", VT: "Vermont", WI: "Wisconsin", AK: "Alaska", NY: "New York"};
+
+// ---- masthead -----------------------------------------------------------------
+$("dek").innerHTML =
+  "A personalized plate is seven characters, and a state gets to decide what they mean. " +
+  "California asks you what you meant, then reads your plate the <b>worst way it can</b>. " +
+  "Texas doesn&rsquo;t ask. In 2012 a dozen other states turned out to be banning " +
+  "<b>each other&rsquo;s lists</b>.";
+
+$("stripe").innerHTML = [
+  [fmt(C.ca15_denied), "California denials with the reviewer's comment, 2015–16"],
+  [fmt(C.ny_issued), "plates New York issued, 2010–14, for comparison"],
+  [fmt(D.states.length), "states whose 2012 banned lists could be read and compared"],
+  [fmt(C.tx), "plates Texas declined in 2025, each with its date"],
+].map(([v, k]) => `<div><div class="v">${v}</div><div class="k">${esc(k)}</div></div>`).join("");
+
+// ---- tooltip (one element, driven by data-tip on any mark) ---------------------
+const tip = $("tip");
+function showTip(el, x, y) {
+  tip.innerHTML = el.getAttribute("data-tip"); tip.hidden = false;
+  const w = tip.offsetWidth || 200, h = tip.offsetHeight || 40;
+  tip.style.left = Math.min(x + 14, (window.innerWidth || 1000) - w - 8) + "px";
+  tip.style.top = Math.max(8, y - h - 12) + "px";
+}
+document.addEventListener("mousemove", e => {
+  const el = e.target && e.target.closest ? e.target.closest("[data-tip]") : null;
+  if (el) showTip(el, e.clientX, e.clientY); else tip.hidden = true;
+});
+document.addEventListener("focusin", e => {
+  const el = e.target && e.target.closest ? e.target.closest("[data-tip]") : null;
+  if (!el) return;
+  const r = el.getBoundingClientRect ? el.getBoundingClientRect() : {left: 0, top: 0, width: 0};
+  showTip(el, r.left + r.width / 2, r.top);
+});
+document.addEventListener("focusout", () => { tip.hidden = true; });
+
+// ---- 01 two readers -------------------------------------------------------------
+const nyCount = D.examples.filter(e => e.ny > 0).length;
+$("lede1").innerHTML =
+  `California&rsquo;s application asks what the plate means. Flagged applications go to a review committee, ` +
+  `whose comments survive in spreadsheets released under public records requests. ` +
+  `Of ${fmt(C.ca15)} flagged decisions in 2015&ndash;16, <b>${pct(C.ca15_denied, C.ca15)} were denials</b>. ` +
+  `Below are ${D.examples.length} of them where the explanation is plausibly innocent, with both texts exactly as the DMV recorded them. ` +
+  `<b>${nyCount}</b> of these exact plates were issued in New York, which kept no explanation at all.`;
+
+const KIND = [
+  ["all", "All", () => true],
+  ["num", "Numbers", e => /GANG|HATE (SYMBOL|NUMBER)|AREA CODE|\b\d/.test(e.reviewer)],
+  ["gun", "Weapons & violence", e => /GUN|RIFLE|KILL|MAGNUM|TRIGGER|WEAPON|HOSTILE|HATE\b/.test(e.reviewer) && !/GANG|SYMBOL|NUMBER/.test(e.reviewer)],
+  ["sex", "Sex & bodies", e => /SEX|BREAST|THREESOME|BONDAGE|ASS|HO |NUT|TOILET|POOP/.test(e.reviewer)],
+];
+let kind = "all";
+function plateHTML(p) { return `<div class="plate" aria-label="Plate ${esc(p)}"><small>CALIFORNIA</small>${esc(p)}</div>`; }
+function drawDeck() {
+  const test = KIND.find(k => k[0] === kind)[2];
+  const shown = D.examples.filter(test);
+  $("deck").innerHTML = shown.map(e => `
+    <article class="slip">
+      <span class="stamp">DENIED ${esc(e.years)}</span>
+      ${plateHTML(e.plate)}
+      <p class="said"><span class="who">Applicant</span>${esc(e.meaning)}</p>
+      <p class="said rev"><span class="who">Reviewer</span>${esc(e.reviewer)}</p>
+      ${e.ny ? `<span class="nybadge">&#10003; Issued in New York, 2010&ndash;14</span>` : ""}
+    </article>`).join("");
+  $("deckctrls").querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.dataset.k === kind ? "true" : "false"));
+}
+$("deckctrls").innerHTML = KIND.map(([k, label, t]) =>
+  `<button class="pill" data-k="${k}" aria-pressed="false">${label} <span class="mono">${D.examples.filter(t).length}</span></button>`).join("");
+$("deckctrls").addEventListener("click", ev => {
+  const b = ev.target && ev.target.closest ? ev.target.closest("button") : null;
+  if (b) { kind = b.dataset.k; drawDeck(); }
+});
+drawDeck();
+
+// ---- 02 code numbers --------------------------------------------------------------
+const WHY = {"13": "Sureño gang number", "14": "Norteño gang number; also white-supremacist code",
+             "18": "18th Street gang", "88": "neo-Nazi code for HH", "69": "sexual"};
+const rate = o => o.flagged ? o.approved / o.flagged : 0;
+const s13 = D.suffixes.find(s => s.s === "13"), s88 = D.suffixes.find(s => s.s === "88");
+$("lede2").innerHTML =
+  `California&rsquo;s reviewers read the last digits of a plate as code. A flagged plate ending in 13 was approved ` +
+  `<b>${pct(s13.ca15.approved, s13.ca15.flagged)}</b> of the time in 2015&ndash;16, down from ${pct(s13.ca13.approved, s13.ca13.flagged)} in 2012&ndash;13. ` +
+  `Birthdays, anniversaries, union locals and model years all get caught. ` +
+  `Over four years New York issued <b>${fmt(s13.ny)}</b> plates ending in 13 and ${fmt(s88.ny)} ending in 88. ` +
+  `Those are counts of issued plates, not rates, because New York&rsquo;s file has no flagged subset to compare against.`;
+
+(function suffixChart() {
+  const W = 470, rowH = 44, top = 18, left = 118, right = 20, H = top + rowH * D.suffixes.length + 26;
+  const max = 0.30, x = v => left + (W - left - right) * Math.min(v, max) / max;
+  let g = "";
+  for (let t = 0; t <= max + 1e-9; t += 0.1) {
+    g += `<line class="grid" x1="${x(t)}" x2="${x(t)}" y1="${top - 6}" y2="${H - 22}"/>` +
+         `<text x="${x(t)}" y="${H - 6}" text-anchor="middle">${Math.round(t * 100)}%</text>`;
+  }
+  D.suffixes.forEach((s, i) => {
+    const y = top + i * rowH + rowH / 2, a = rate(s.ca13), b = rate(s.ca15);
+    g += `<text class="ink" x="0" y="${y - 3}" style="font-size:15px;font-weight:600">…${s.s}</text>` +
+         `<text x="0" y="${y + 12}" style="font-size:9.5px">${esc(WHY[s.s])}</text>` +
+         `<line x1="${x(a)}" x2="${x(b)}" y1="${y}" y2="${y}" stroke="var(--line-2)" stroke-width="2"/>`;
+    const dot = (v, o, cls, label) =>
+      `<g tabindex="0" data-tip="<b>…${s.s}</b> · ${label}<br>${fmt(o.approved)} of ${fmt(o.flagged)} flagged approved (${pct(o.approved, o.flagged, 1)})">` +
+      `<circle class="hit" cx="${x(v)}" cy="${y}" r="12"/>${cls}</g>`;
+    g += dot(a, s.ca13, `<circle cx="${x(a)}" cy="${y}" r="5.5" fill="var(--surface)" stroke="var(--s2)" stroke-width="2.5"/>`, "2012–13");
+    g += dot(b, s.ca15, `<circle cx="${x(b)}" cy="${y}" r="6" fill="var(--s1)" stroke="var(--surface)" stroke-width="2"/>`, "2015–16");
+  });
+  $("suffix").innerHTML = `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Approval rate of flagged California plates by ending, two periods">${g}</svg>`;
+  $("suffix-legend").innerHTML =
+    `<span><i class="sw ring" style="border-color:var(--s2)"></i>2012–13</span>` +
+    `<span><i class="sw" style="background:var(--s1)"></i>2015–16</span>`;
+  $("suffix-table").innerHTML = `<table><tr><th>Ending</th><th>CA 2012–13 flagged</th><th>approved</th><th>CA 2015–16 flagged</th><th>approved</th><th>NY issued 2010–14</th></tr>` +
+    D.suffixes.map(s => `<tr><td>…${s.s}</td><td>${fmt(s.ca13.flagged)}</td><td>${pct(s.ca13.approved, s.ca13.flagged, 1)}</td>` +
+      `<td>${fmt(s.ca15.flagged)}</td><td>${pct(s.ca15.approved, s.ca15.flagged, 1)}</td><td>${fmt(s.ny)}</td></tr>`).join("") + `</table>`;
+})();
+
+(function vocabChart() {
+  const rows = D.vocab.slice().sort((a, b) => b.n - a.n), base = D.vocab_base;
+  const W = 360, rowH = 26, left = 118, right = 44, H = rowH * rows.length + 4;
+  const max = rows[0].n / base, x = v => (W - left - right) * v / max;
+  let g = "";
+  rows.forEach((r, i) => {
+    const y = i * rowH, w = Math.max(2, x(r.n / base));
+    g += `<g tabindex="0" data-tip="<b>${esc(r.k)}</b><br>${fmt(r.n)} of ${fmt(base)} denial comments (${pct(r.n, base, 1)})">` +
+         `<rect class="hit" x="0" y="${y}" width="${W}" height="${rowH}"/>` +
+         `<text x="${left - 8}" y="${y + 16}" text-anchor="end">${esc(r.k)}</text>` +
+         `<path d="M${left} ${y + 6}h${w - 4}a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-${w - 4}z" fill="var(--s1)"/>` +
+         `<text class="ink" x="${left + w + 6}" y="${y + 16}">${pct(r.n, base)}</text></g>`;
+  });
+  $("vocab").innerHTML = `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Share of denial comments mentioning each term">${g}</svg>`;
+  $("vocab-read").textContent = `Share of ${fmt(base)} denial comments containing the term. A comment can mention several.`;
+})();
+
+// ---- 03 borrowed lists ------------------------------------------------------------
+const S = D.states.map(s => s.s), O = D.overlap;
+let best = {v: 0};
+O.forEach((row, i) => row.forEach((v, j) => { if (v != null && v > best.v) best = {v, a: S[i], b: S[j]}; }));
+const ut = S.indexOf("UT"), utMax = Math.max(...O[ut].filter(v => v != null));
+const oldfart = D.most_shared.find(m => m[0] === "OLDFART");
+const meTotal = D.maine_sources.reduce((a, m) => a + m[1], 0), meTop = D.maine_sources[0];
+$("lede3").innerHTML =
+  `In 2012 governmentattic.org asked every state DMV for its list of banned plates. Twenty-six states and D.C. answered, and ${D.states.length} sent a list long enough to compare. ` +
+  `Side by side they are not independent judgements. <b>${pct(best.v, 1)} of ${STATE_NAMES[best.a]}&rsquo;s list is on ${STATE_NAMES[best.b]}&rsquo;s</b>, ` +
+  `and the same odd strings turn up everywhere: OLDFART is on ${oldfart ? oldfart[1] : "every one"} of the ${D.states.length}. ` +
+  `Utah is the exception. No more than ${pct(utMax, 1)} of its list appears on any other, and it gives a reason for every plate.`;
+
+(function heatmap() {
+  const n = S.length, cell = 38, left = 40, top = 34, W = left + n * cell + 6, H = top + n * cell + 6;
+  let g = "";
+  S.forEach((s, j) => { g += `<text x="${left + j * cell + cell / 2}" y="${top - 10}" text-anchor="middle">${s}</text>`; });
+  S.forEach((a, i) => {
+    g += `<text x="${left - 8}" y="${top + i * cell + cell / 2 + 4}" text-anchor="end">${a}</text>`;
+    S.forEach((b, j) => {
+      const v = O[i][j], X = left + j * cell + 1, Y = top + i * cell + 1, sz = cell - 2;
+      if (v == null) { g += `<rect x="${X}" y="${Y}" width="${sz}" height="${sz}" rx="4" fill="var(--sunk)"/>`; return; }
+      const op = (0.06 + 0.94 * v).toFixed(3);
+      g += `<g tabindex="0" data-tip="<b>${pct(v, 1)}</b> of ${esc(STATE_NAMES[a] || a)}&rsquo;s ${fmt(D.states[i].n)} banned plates<br>are also on ${esc(STATE_NAMES[b] || b)}&rsquo;s list">` +
+           `<rect x="${X}" y="${Y}" width="${sz}" height="${sz}" rx="4" fill="var(--accent)" fill-opacity="${op}"/>` +
+           (v >= 0.3 ? `<text x="${X + sz / 2}" y="${Y + sz / 2 + 4}" text-anchor="middle" style="font-size:10px;fill:${v > 0.5 ? "var(--surface)" : "var(--ink)"}">${Math.round(v * 100)}</text>` : "") +
+           `</g>`;
+    });
+  });
+  $("heat").innerHTML = `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Overlap between state banned-plate lists">${g}</svg>`;
+  $("heat-read").textContent = "Darker means more of the row state's list is shared. Read across a row; the matrix is not symmetric, because lists differ in length.";
+  $("heat-table").innerHTML = `<table><tr><th>List</th><th>plates</th>${S.map(s => `<th>${s}</th>`).join("")}</tr>` +
+    S.map((a, i) => `<tr><td>${a}</td><td>${fmt(D.states[i].n)}</td>${O[i].map(v => `<td>${v == null ? "–" : Math.round(v * 100)}</td>`).join("")}</tr>`).join("") + `</table>`;
+})();
+
+(function utah() {
+  const rows = D.utah, total = rows.reduce((a, r) => a + r[1], 0), W = 360, rowH = 24, left = 132, right = 40;
+  const max = rows[0][1], x = v => (W - left - right) * v / max;
+  let g = "";
+  rows.forEach(([k, v], i) => {
+    const y = i * rowH, w = Math.max(2, x(v)), label = k.toLowerCase();
+    g += `<g tabindex="0" data-tip="<b>${esc(label)}</b><br>${fmt(v)} of ${fmt(total)} plates with a stated reason">` +
+         `<rect class="hit" x="0" y="${y}" width="${W}" height="${rowH}"/>` +
+         `<text x="${left - 8}" y="${y + 15}" text-anchor="end">${esc(label)}</text>` +
+         `<path d="M${left} ${y + 5}h${w - 4}a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-${w - 4}z" fill="var(--s1)"/>` +
+         `<text class="ink" x="${left + w + 6}" y="${y + 15}">${fmt(v)}</text></g>`;
+  });
+  $("utah").innerHTML = `<svg class="chart" viewBox="0 0 ${W} ${rowH * rows.length + 2}" role="img" aria-label="Utah banned plates by stated reason">${g}</svg>`;
+})();
+
+$("shared").innerHTML = D.most_shared.map(([p, n]) => `<span class="chip">${esc(p)}<i>${n}/${D.states.length}</i></span>`).join("");
+$("maine").innerHTML = `Maine&rsquo;s list tags each plate with a state: ${fmt(meTop[1])} of ${fmt(meTotal)} say ${STATE_NAMES[meTop[0]] || meTop[0]}. ` +
+  D.maine_sources.slice(1).map(m => `${fmt(m[1])} ${STATE_NAMES[m[0]] || m[0]}`).join(", ") + ".";
+
+// ---- 04 the calendar ----------------------------------------------------------------
+const TAG = [["Musk", "var(--s1)"], ["ICE", "var(--s3)"], ["FAFO", "var(--s2)"]];
+const byTag = t => D.tx_tagged.filter(d => d.tag === t);
+const musk = byTag("Musk"), ice = byTag("ICE"), fafo = byTag("FAFO");
+const mon = d => +d.date.slice(5, 7);
+const muskSpring = musk.filter(d => mon(d) >= 3 && mon(d) <= 6).length;
+$("lede4").innerHTML =
+  `Texas&rsquo;s written criteria say it &ldquo;does not consider your meaning or intent because the public will not know this information.&rdquo; ` +
+  `What it does keep is the date of each request, and the list follows the news. ` +
+  `<b>${muskSpring} of ${musk.length}</b> plates insulting or naming Elon Musk were requested between March and June 2025, the months Musk&rsquo;s role at DOGE and the Tesla showroom protests were news. ` +
+  `The ${ice.length} plates built on ICE all arrived in October and November. FAFO, rejected ${fafo.length} times, never went away.`;
+
+(function months() {
+  const W = 640, H = 150, left = 34, right = 10, top = 10, bottom = 22, m = D.tx_months, max = Math.max(...m);
+  const bw = (W - left - right) / 12, y = v => top + (H - top - bottom) * (1 - v / max);
+  const NAMES = "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split(" ");
+  let g = "";
+  [0, 100, 200].forEach(t => { if (t <= max) g += `<line class="grid" x1="${left}" x2="${W - right}" y1="${y(t)}" y2="${y(t)}"/><text x="${left - 6}" y="${y(t) + 4}" text-anchor="end">${t}</text>`; });
+  m.forEach((v, i) => {
+    const X = left + i * bw + 3, w = bw - 6, Y = y(v), h = H - bottom - Y;
+    g += `<g tabindex="0" data-tip="<b>${NAMES[i]} 2025</b><br>${fmt(v)} declined plate requests">` +
+         `<rect class="hit" x="${left + i * bw}" y="${top}" width="${bw}" height="${H - top - bottom}"/>` +
+         `<path d="M${X} ${H - bottom}v-${h - 4}a4 4 0 0 1 4 -4h${w - 8}a4 4 0 0 1 4 4v${h - 4}z" fill="var(--line-2)"/>` +
+         `<text x="${X + w / 2}" y="${H - 6}" text-anchor="middle">${NAMES[i]}</text></g>`;
+  });
+  $("months").innerHTML = `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Texas declined plates per month, 2025">${g}</svg>`;
+
+  // one lane per tag, each plate a dot at its request date
+  const laneH = 30, T = W, TH = laneH * TAG.length + 8;
+  const day = d => (Date.UTC(+d.slice(0, 4), +d.slice(5, 7) - 1, +d.slice(8, 10)) - Date.UTC(2025, 0, 1)) / 864e5;
+  const xd = d => left + (T - left - right) * day(d) / 365;
+  let t = "";
+  TAG.forEach(([tag, col], k) => {
+    const cy = k * laneH + laneH / 2 + 2;
+    t += `<line class="grid" x1="${left}" x2="${T - right}" y1="${cy}" y2="${cy}"/>` +
+         `<text x="${left - 6}" y="${cy + 4}" text-anchor="end" class="ink">${tag}</text>`;
+    const seen = {};
+    byTag(tag).forEach(d => {
+      const key = d.date.slice(0, 7) + Math.round(day(d.date) / 4); const off = (seen[key] = (seen[key] || 0) + 1) - 1;
+      const cx = xd(d.date), yy = cy + (off % 2 ? 1 : -1) * Math.ceil(off / 2) * 7;
+      t += `<g tabindex="0" data-tip="<b>${esc(d.plate)}</b><br>requested ${d.date}"><circle class="hit" cx="${cx}" cy="${yy}" r="9"/>` +
+           `<circle cx="${cx}" cy="${yy}" r="4.5" fill="${col}" stroke="var(--surface)" stroke-width="2"/></g>`;
+    });
+  });
+  $("tagline").innerHTML = `<svg class="chart" viewBox="0 0 ${T} ${TH}" role="img" aria-label="Declined Texas plates mentioning Musk, ICE or FAFO, by request date">${t}</svg>`;
+  $("tag-legend").innerHTML = TAG.map(([tag, col]) => `<span><i class="sw" style="background:${col}"></i>${tag} <span class="mono">${byTag(tag).length}</span></span>`).join("") +
+    `<span>Grey bars: all ${fmt(C.tx)} declined plates by month</span>`;
+})();
+$("note-tx").innerHTML = `<b>Small numbers.</b> ${musk.length} Musk plates and ${ice.length} ICE plates are a signal worth looking for in other years, not a trend. ` +
+  `Tags are found by pattern (MUSK, ELON, ICE, FAFO) and read by eye. Only 2025 is here. Lists for 2023 and 2024 were reported in the press, but the files were not found.`;
+
+// ---- methods & footer --------------------------------------------------------------
+$("methods").innerHTML = `
+<h4>Sources</h4>
+<p><b>California, 2015–16:</b> ${fmt(C.ca15)} decisions on applications flagged for review, released to Noah Veltman under a public records request. <b>California, 2012–13:</b> review sheets released to MuckRock in 2014 and collected by Dan Nguyen. ${fmt(C.ca13)} decisions come from the 225 <code>.xlsx</code> sheets; the 72 older <code>.xls</code> sheets are not read. <b>New York, 2010–14:</b> every issued and rejected personalized plate plus the DMV&rsquo;s automatic ban list (the Red Guide), from WNYC&rsquo;s FOIL request. <b>2012 state lists:</b> governmentattic.org&rsquo;s request to every DMV, as scanned responses. <b>Texas, 2025:</b> the DMV&rsquo;s list of declined plates with request dates.</p>
+<h4>What &ldquo;flagged&rdquo; means, and why the states can&rsquo;t be ranked</h4>
+<p>California&rsquo;s files hold only applications the committee pulled for review, not every application, so an approval rate here is a rate among suspicious-looking plates. New York&rsquo;s file is the opposite: every issued plate, with no flag. So the page compares <i>what</i> each state refuses, never <i>how often</i>. Endings are matched on the final two characters after removing spaces.</p>
+<h4>Reading the 2012 scans</h4>
+<p>The responses are OCR of printed lists in about six layouts: columns, a plate plus an ID, a plate plus a reason (Utah), rejection letters with codes (Colorado, where only code 06 &ldquo;possibly offensive&rdquo; is kept), and lists interleaved with markers. Text was extracted with <code>pdftotext -layout</code>, split on runs of two or more spaces, with single spaces inside a plate removed. OCR noise remains, so treat the overlap figures as patterns across lists, not as plate-by-plate facts. Numbered blocks such as GODS1&ndash;GODS32 (Georgia) and FUBAR2&ndash;FUBAR96 (New Jersey) are ranges, not separate judgements. Eleven of the 27 responses were only a policy letter. Only the ${D.states.length} lists with at least 900 plates are compared.</p>
+<h4>A trap in the Texas PDF</h4>
+<p><code>pdftotext -layout</code> misaligns this file. Wherever a plate cell wraps, plates and dates drift apart by a row, pairing about 84 of 1,951 plates with a neighbour&rsquo;s date without any error. <code>-raw</code> and <code>-table</code> agree with each other and with the header&rsquo;s count, and the build refuses to run if they ever disagree.</p>
+<h4>Choosing the examples</h4>
+<p>The ${D.examples.length} plates in section 01 were picked by hand from the denials. Rules: the applicant&rsquo;s explanation is plausibly innocent; no slur appears in the plate or either text; nothing names or locates the applicant. Denials that failed those rules were dropped even when they made the point better. The text is pulled from the data by plate, never retyped. The only change is that two profanities in reviewer comments are masked. Innocent-sounding is not proof of innocence: some applicants plainly were trying it on, and reviewers catch real slurs every day. The claim is about how the reading is done, not that every denial is wrong.</p>
+<h4>Where not to push this</h4>
+<p>Three states and a snapshot of a dozen more are not the country, and 2012 is not today. The vocabulary counts are keyword matches on free-text comments, so &ldquo;gang&rdquo; includes &ldquo;no gang reference found&rdquo; if a reviewer wrote that.</p>`;
+
+$("foot").innerHTML =
+  `Data: <a href="https://github.com/veltman/ca-license-plates">veltman/ca-license-plates</a> · ` +
+  `<a href="https://github.com/datanews/license-plates">datanews/license-plates</a> (WNYC) · ` +
+  `<a href="https://github.com/dannguyen/dmv-vanity-plate-rejections">dannguyen/dmv-vanity-plate-rejections</a> ` +
+  `(<a href="http://www.governmentattic.org/StateDMV-ForbidPlates.html">governmentattic.org</a>, MuckRock) · ` +
+  `Texas DMV <a href="https://www.fox4news.com/news/2025-rejected-personalized-license-plates-texas">2025 declined plates</a> and ` +
+  `<a href="https://www.txdmv.gov/sites/default/files/body-files/PLP_Criteria.pdf">plate criteria</a>. ` +
+  `All are government records released under public records laws; none of the repositories states a licence, and this page carries derived counts and ${D.examples.length} quoted rows, not the files. ` +
+  `Catalogued in <a href="https://tnriley.github.io/headwaters/">Headwaters</a>.`;
+
+// ---- theme -------------------------------------------------------------------------
+$("theme").onclick = () => {
+  const cur = document.documentElement.getAttribute("data-theme");
+  const dark = cur ? cur === "dark" : (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
+  document.documentElement.setAttribute("data-theme", dark ? "light" : "dark");
+};
+
+</script>
+
+</body>
+</html>

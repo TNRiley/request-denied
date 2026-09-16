@@ -1,0 +1,215 @@
+<title>Request Denied</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,600&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --paper:#EDEAE4; --surface:#F7F5F0; --raise:#FFFFFF; --sunk:#E3DFD6;
+    --ink:#17171A; --muted:#65646C; --faint:#918F99; --line:#D6D2CA; --line-2:#C2BDB2;
+    --accent:#27518F; --accent-soft:#DCE4F1; --stamp:#A33326; --stamp-soft:#F2DCD8;
+    /* categorical, fixed order - validated light (surface #F7F5F0) */
+    --s1:#27518F; --s2:#B7791F; --s3:#A33326;
+    --plate:#FBFAF6; --plate-ink:#1E2A55; --plate-rim:#9FA3AE;
+    --shadow:0 1px 2px rgba(23,23,26,.05),0 14px 40px rgba(23,23,26,.09);
+    --r:16px; --r-sm:10px;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#101114; --surface:#191A1E; --raise:#212228; --sunk:#0B0C0E;
+    --ink:#E9E8E4; --muted:#9A98A2; --faint:#6B6976; --line:#272931; --line-2:#383A44;
+    --accent:#87ABDF; --accent-soft:#1A2234; --stamp:#E0796A; --stamp-soft:#2E1B18;
+    /* categorical, fixed order - validated dark (surface #191A1E) */
+    --s1:#4C8DF6; --s2:#B38224; --s3:#E0587A;
+    --plate:#D9D6CE; --plate-ink:#1E2A55; --plate-rim:#5F6270;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 16px 46px rgba(0,0,0,.45);
+  }}
+  :root[data-theme="dark"]{
+    --paper:#101114; --surface:#191A1E; --raise:#212228; --sunk:#0B0C0E;
+    --ink:#E9E8E4; --muted:#9A98A2; --faint:#6B6976; --line:#272931; --line-2:#383A44;
+    --accent:#87ABDF; --accent-soft:#1A2234; --stamp:#E0796A; --stamp-soft:#2E1B18;
+    --s1:#4C8DF6; --s2:#B38224; --s3:#E0587A;
+    --plate:#D9D6CE; --plate-ink:#1E2A55; --plate-rim:#5F6270;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 16px 46px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  body{background:var(--paper);color:var(--ink);font-family:"Archivo",system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:920px;margin:0 auto;padding:26px 22px 80px;position:relative}
+  .mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+
+  .masthead{border-bottom:2.5px solid var(--ink);padding-bottom:16px;margin-bottom:6px}
+  .eyebrow{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-right:46px;
+    font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  .eyebrow .accent{color:var(--accent);font-weight:600}
+  h1.title{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(44px,10vw,88px);line-height:.92;letter-spacing:-.025em;
+    margin:14px 0 10px;text-wrap:balance}
+  h1.title em{font-style:italic;color:var(--stamp)}
+  .dek{font-family:"Fraunces",serif;font-size:clamp(16px,2.4vw,20px);font-weight:400;color:var(--muted);max-width:64ch;line-height:1.45}
+  .dek b{color:var(--ink);font-weight:600}
+  .themebtn{position:absolute;top:26px;right:22px;background:var(--surface);border:1px solid var(--line);color:var(--muted);
+    width:38px;height:38px;border-radius:10px;cursor:pointer;font-size:15px}
+  .themebtn:hover{color:var(--ink);border-color:var(--line-2)}
+  .cw{font-size:12.5px;color:var(--faint);margin:10px 0 0}
+
+  .stripe{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);
+    border-radius:var(--r-sm);overflow:hidden;margin:22px 0 4px}
+  .stripe > div{background:var(--surface);padding:12px 14px}
+  .stripe .v{font-family:"IBM Plex Mono",monospace;font-size:19px;font-weight:600;letter-spacing:-.02em}
+  .stripe .k{font-size:11px;color:var(--faint);line-height:1.35;margin-top:3px}
+  @media(max-width:680px){.stripe{grid-template-columns:repeat(2,1fr)}}
+
+  section{margin:50px 0 0}
+  h2{font-family:"Fraunces",serif;font-size:clamp(24px,4vw,33px);font-weight:600;letter-spacing:-.02em;margin:0 0 6px;line-height:1.1}
+  h2 .num{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--accent);letter-spacing:.14em;
+    display:block;font-weight:600;margin-bottom:8px}
+  h3{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 10px;font-weight:600}
+  .lede{color:var(--muted);max-width:66ch;margin:0 0 18px;font-size:15.5px}
+  .lede b{color:var(--ink);font-weight:600}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;box-shadow:var(--shadow)}
+  .legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--muted);margin:10px 2px 2px}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .sw{width:11px;height:11px;border-radius:50%;flex:none;display:inline-block}
+  .sw.ring{background:transparent!important;border:2px solid}
+  .readout{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--muted);min-height:18px;margin:8px 2px 0}
+  .note{border-left:3px solid var(--accent);background:var(--accent-soft);padding:12px 14px;border-radius:0 var(--r-sm) var(--r-sm) 0;
+    font-size:14px;color:var(--ink);margin:16px 0;line-height:1.55}
+  .note.warn{background:transparent;border:1px solid var(--line);border-left:3px solid var(--stamp)}
+  .grid2{display:grid;grid-template-columns:1.25fr 1fr;gap:14px}
+  @media(max-width:760px){.grid2{grid-template-columns:1fr}}
+
+  .ctrls{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 14px}
+  button.pill{background:var(--surface);border:1px solid var(--line);color:var(--muted);border-radius:999px;
+    padding:6px 13px;font:inherit;font-size:13px;cursor:pointer}
+  button.pill[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+  button.pill:hover{border-color:var(--line-2)}
+
+  /* ---- the plates ---- */
+  .deck{display:grid;grid-template-columns:repeat(auto-fill,minmax(262px,1fr));gap:12px}
+  .slip{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:flex;flex-direction:column;gap:10px;position:relative}
+  .plate{align-self:flex-start;background:var(--plate);color:var(--plate-ink);border:2px solid var(--plate-rim);border-radius:9px;
+    padding:4px 14px 5px;font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:22px;letter-spacing:.14em;
+    box-shadow:inset 0 0 0 3px var(--plate),inset 0 0 0 4px var(--plate-rim);white-space:pre;position:relative}
+  .plate small{display:block;font-size:7.5px;letter-spacing:.3em;text-align:center;font-weight:500;margin-bottom:-2px;opacity:.75}
+  .said{font-size:13.5px;line-height:1.45}
+  .said .who{display:block;font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-bottom:1px}
+  .said.rev{color:var(--stamp)}
+  .said.rev .who{color:var(--stamp);opacity:.8}
+  .stamp{position:absolute;top:14px;right:14px;font-family:"IBM Plex Mono",monospace;font-size:10px;font-weight:600;letter-spacing:.14em;
+    color:var(--stamp);border:1.5px solid var(--stamp);border-radius:4px;padding:1px 5px;transform:rotate(-6deg);opacity:.85}
+  .nybadge{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--accent);margin-top:auto}
+
+  /* ---- charts ---- */
+  svg.chart{display:block;width:100%;height:auto;overflow:visible}
+  svg.chart text{font-family:"IBM Plex Mono",monospace;font-size:11px;fill:var(--muted)}
+  svg.chart text.ink{fill:var(--ink)}
+  svg.chart .grid{stroke:var(--line);stroke-width:1}
+  svg.chart .axis{stroke:var(--line-2);stroke-width:1}
+  svg.chart [data-tip]{cursor:default}
+  svg.chart .hit{fill:transparent}
+  #tip{position:fixed;z-index:9;pointer-events:none;background:var(--raise);color:var(--ink);border:1px solid var(--line-2);
+    border-radius:8px;padding:7px 10px;font-size:12.5px;line-height:1.4;box-shadow:var(--shadow);max-width:280px}
+  #tip b{font-family:"IBM Plex Mono",monospace}
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{font-family:"IBM Plex Mono",monospace;font-size:12px;border:1px solid var(--line-2);border-radius:6px;padding:2px 7px;background:var(--raise)}
+  .chip i{font-style:normal;color:var(--faint);margin-left:5px}
+
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th,td{text-align:right;padding:5px 7px;border-bottom:1px solid var(--line)}
+  th:first-child,td:first-child{text-align:left}
+  th{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);font-weight:600}
+  td{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+  .scroll{overflow-x:auto}
+  details.tbl{margin-top:10px}
+  details.tbl summary{cursor:pointer;font-size:12.5px;color:var(--accent)}
+
+  details.methods{margin-top:44px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);padding:0 16px}
+  details.methods summary{cursor:pointer;padding:14px 0;font-weight:600;font-size:14px;list-style:none;display:flex;justify-content:space-between}
+  details.methods summary::-webkit-details-marker{display:none}
+  details.methods summary::after{content:"+";color:var(--accent);font-family:"IBM Plex Mono",monospace}
+  details.methods[open] summary::after{content:"\2212"}
+  details.methods > div{padding:0 0 16px;font-size:14px;color:var(--muted);line-height:1.62}
+  details.methods h4{color:var(--ink);font-size:12px;margin:18px 0 5px;text-transform:uppercase;letter-spacing:.08em}
+  details.methods code{font-family:"IBM Plex Mono",monospace;font-size:12.5px;background:var(--sunk);padding:1px 5px;border-radius:4px}
+  footer{margin-top:46px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint);line-height:1.7}
+  a{color:var(--accent)}
+</style>
+
+<div class="wrap">
+  <button class="themebtn" id="theme" title="Switch theme" aria-label="Switch theme">&#9680;</button>
+
+  <header class="masthead">
+    <div class="eyebrow">
+      <span>Quick Projects</span>
+      <span class="accent">State DMVs &middot; 2010&ndash;2025</span>
+    </div>
+    <h1 class="title">Request <em>Denied</em></h1>
+    <p class="dek" id="dek"></p>
+    <p class="cw">These are the words states refuse to put on cars, so some of them are crude. Slurs are left out of every example on this page.</p>
+  </header>
+
+  <div class="stripe" id="stripe"></div>
+
+  <section>
+    <h2><span class="num">01 &middot; TWO READERS</span>What you meant, and what they read</h2>
+    <p class="lede" id="lede1"></p>
+    <div class="ctrls" id="deckctrls"></div>
+    <div class="deck" id="deck"></div>
+  </section>
+
+  <section>
+    <h2><span class="num">02 &middot; CODE NUMBERS</span>A birthday ending in 13</h2>
+    <p class="lede" id="lede2"></p>
+    <div class="grid2">
+      <div class="card">
+        <h3>California approval rate of flagged plates, by last two digits</h3>
+        <div id="suffix"></div>
+        <div class="legend" id="suffix-legend"></div>
+      </div>
+      <div class="card">
+        <h3>Words in reviewers&rsquo; denial comments, 2015&ndash;16</h3>
+        <div id="vocab"></div>
+        <p class="readout" id="vocab-read"></p>
+      </div>
+    </div>
+    <details class="tbl"><summary>Table view</summary><div class="scroll" id="suffix-table"></div></details>
+  </section>
+
+  <section>
+    <h2><span class="num">03 &middot; BORROWED LISTS</span>Taboo by photocopy</h2>
+    <p class="lede" id="lede3"></p>
+    <div class="card">
+      <h3>Share of each state&rsquo;s 2012 banned list (row) that also appears on another state&rsquo;s list (column)</h3>
+      <div class="scroll"><div id="heat" style="min-width:560px"></div></div>
+      <p class="readout" id="heat-read"></p>
+    </div>
+    <details class="tbl"><summary>Table view</summary><div class="scroll" id="heat-table"></div></details>
+    <div class="grid2" style="margin-top:14px">
+      <div class="card"><h3>Utah&rsquo;s stated reasons, 2012</h3><div id="utah"></div></div>
+      <div class="card"><h3>Banned on all twelve lists, or nearly</h3><div class="chips" id="shared"></div>
+        <p class="readout" id="maine"></p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">04 &middot; THE CALENDAR</span>Texas rejects the news</h2>
+    <p class="lede" id="lede4"></p>
+    <div class="card">
+      <h3>Declined personalized plates by request date, Texas 2025</h3>
+      <div id="months"></div>
+      <div id="tagline"></div>
+      <div class="legend" id="tag-legend"></div>
+    </div>
+    <div class="note" id="note-tx"></div>
+  </section>
+
+  <details class="methods">
+    <summary>Methods, and where not to push this</summary>
+    <div id="methods"></div>
+  </details>
+
+  <footer id="foot"></footer>
+</div>
+<div id="tip" hidden></div>
+
+<script>
+const D = __DATA__;
+__APP__
+</script>
